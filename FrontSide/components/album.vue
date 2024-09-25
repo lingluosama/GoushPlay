@@ -7,11 +7,13 @@ const props= defineProps({
 </script>
 
 <template>
-  <div class="w-52 h-52 flex justify-center items-center flex-row">
-    <mdui-card  >
-      <img class="w-4/5 h-4/5 bg-auto" :src="props.cover" alt="">
-      <div>{{props.name}}</div>
-      <div>{{props.author}}</div>
+  <div class="w-56 h-72">
+    <mdui-card  class="w-full h-full">
+      <img class="w-full h-56 object-cover" :src="props.cover" alt="">
+      <div class="flex w-full flex-col ml-3">
+        <div class="font-serif text-lg text-nowrap truncate" >{{props.name}}</div>
+        <div class="text-gray-500">{{props.author}}</div>
+      </div>
     </mdui-card>
   </div>
 

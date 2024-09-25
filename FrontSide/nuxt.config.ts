@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css',
     "~/assets/icons/filled.css",
     "~/assets/icons/outlined.css"],
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   modules: [
     '@element-plus/nuxt'
   ],
