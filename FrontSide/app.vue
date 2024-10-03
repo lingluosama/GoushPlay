@@ -7,8 +7,11 @@
 <script setup lang="ts">
 import 'mdui/mdui.css';
 import 'mdui';
+import type { ButtonIcon } from 'mdui/components/button-icon.js';
 import ElementPlus from 'element-plus'
 import 'element-plus'
+
+import Vue from 'vue'
 </script>
 <style>
 .page-enter-active,

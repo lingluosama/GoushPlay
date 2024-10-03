@@ -13,7 +13,7 @@
         <mdui-navigation-rail-item icon="settings" >Setting</mdui-navigation-rail-item>
       </mdui-navigation-rail>
     </div>
-    <NuxtPage class="scroll-auto">
+    <NuxtPage>
     </NuxtPage>
   </div>
 </template>

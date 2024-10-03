@@ -1,0 +1,28 @@
+services:
+  database:
+    image:
+      mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+  oss:
+    image: minio/minio
+    hostname: "minio"
+    ports:
+      - "9000:9000" # api 端口
+      - "9001:9001" # 控制台端口
+    environment:
+      MINIO_ACCESS_KEY: ^1145141919810
+      MINIO_SECRET_KEY: ^1145141919810
+      MINIO_ROOT_USER: 1145141918
+      MINIO_ROOT_PASSWORD: 1145141918
+    command: server --console-address ':9001' /data
+    privileged: true
+    cache:
+      image:
+        redis
+      ports:
+        - "6379:6379"
+      command: redis-server --requirepass "123456"
+    

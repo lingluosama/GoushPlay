@@ -15,6 +15,7 @@
     "mdui": "^2.1.2",
     "nuxt": "^3.13.0",
     "vue": "latest",
+    "vue-aplayer": "^1.6.1",
     "vue-audio-better": "^3.0.1",
     "vue-router": "latest"
   },
