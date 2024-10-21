@@ -32,12 +32,9 @@ spring:
       cache-null-values: true
 
 minio:
-  endpoint: 
-    http://localhost:9000
-  accessKey:
-    ^1145141919810
-  secretKey:
-    ^1145141919810
+  endpoint: http://localhost:9000
+  accessKey: ^1145141919810
+  secretKey: ^1145141919810
 
   
 

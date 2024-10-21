@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "minio")
 @Component
 public class MinioConfigProp {
-    private String endpoint;
-    private String accessKey;
-    private String secretKey;
+    private String endpoint="http://localhost:9000";
+    private String accessKey="1145141918";
+    private String secretKey="1145141918";
     private String imgHost;
-
+    public static String MinioEndpoint = "http://localhost:9000";
 
     @Bean
     public MinioClient minioClient() {

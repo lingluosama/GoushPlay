@@ -6,7 +6,22 @@ const formData=reactive({
   author:"",
   album:""
 })
+const upload=async ()=>{
+  const musicFile = musicInput.value.files[0];
+  const coverFile = CoverInput.value.files[0]; 
+  console.log(musicFile);
+  if (!musicFile || !coverFile) {
+    console.error('请确保选择了音频文件和封面图像。');
+    return;
+  }
 
+  await UploadSangs({
+    img:coverFile,
+    mp3:musicFile,
+    title:formData.title,
+    author:formData.author});
+  
+}
 </script>
 
 <template>
@@ -38,7 +53,7 @@ const formData=reactive({
         <div></div>
       </div>
       <div class="w-full flex flex-col justify-items-center items-center">
-        <mdui-button>Upload</mdui-button>
+        <mdui-button @click="upload">Upload</mdui-button>
       </div>
       <div></div>
     </div>

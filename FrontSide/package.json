@@ -10,9 +10,17 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/proxy": "^2.1.0",
+    "axios": "^1.7.7",
+    "color-thief-node": "^1.0.4",
+    "colorthief": "^2.6.0",
+    "consola": "^3.2.3",
+    "defu": "^6.1.4",
     "element-plus": "^2.8.3",
     "element-ui": "^2.15.14",
     "mdui": "^2.1.2",
+    "mitt": "^3.0.1",
     "nuxt": "^3.13.0",
     "vue": "latest",
     "vue-aplayer": "^1.6.1",
