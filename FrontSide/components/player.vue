@@ -45,14 +45,6 @@ const calculateDuration=()=>{
   var myVid=audioRef.value;
   myVid.loop=true;
   myVid.src=props.url;
-  myVid.addEventListener(
-      "ended",
-      function (){
-        isPlay.value=false;
-        currentProgress.value=0;
-      },
-      false
-  );
   if(myVid !=null){
     myVid.oncanplay = function () {
       fileTime.value=myVid.duration;
@@ -80,18 +72,16 @@ const updateProgress=(e)=>{
     currentProgress.value=e.target.currentTime;
     audioStart.value=transTime(audioRef.value.currentTime);
   }
-  console.log(audioRef.value.currentTime);
-
 }
 const handleAudioVolume=(val)=>{
-  localStorage.setItem("Volume",val)
+  Volume.value=val
   audioRef.value.volume=val/100;
 }
 </script>
 
 <template>
-<div class="w-full h-full min-h-screen flex flex-col items-center justify-items-center object-center">
-  <audio style="display: none" controls :src="props.url" ref="audioRef" @timeupdate="updateProgress" @ended="props.finished ">
+<div class="w-full h-auto flex flex-col items-center justify-items-center object-center">
+  <audio :loop="false"  style="display: none" controls :src="props.url" ref="audioRef" @timeupdate="updateProgress" @ended="async ()=>{await props.finished();await audioRef.load();audioRef.play()}">
     <source :src="props.url">
     您的浏览器不支持音频播放
   </audio>
@@ -131,12 +121,12 @@ const handleAudioVolume=(val)=>{
     </div>
     <div class="flex-row flex items-center">
       <div>{{audioStart}}</div>
-      <mdui-slider  class="jindutiao" :min="0" :max="fileTime" @input="console.log($event.target.value)" :value="currentProgress" @change="handleProgress($event.target.value)"></mdui-slider>
+      <mdui-slider  class="jindutiao" :min="0" :max="fileTime" :value="currentProgress" @change="handleProgress($event.target.value)"></mdui-slider>
       <div>{{totalTime}}</div>
     </div>
     <div class="flex flex-row-reverse w-full items-center justify-items-center" >
-      <mdui-slider   class="w-1/5"  :value="Volume" @input="handleAudioVolume($event.target.value)"></mdui-slider>
-      <svg t="1727405681649" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8921" width="24" height="24"><path d="M601.248 196.16c4.448 9.088 6.752 19.104 6.752 29.248v573.184C608 834.72 579.36 864 544 864c-9.92 0-19.744-2.368-28.608-6.912l-256-130.784A65.568 65.568 0 0 1 224 667.808v-311.584c0-24.768 13.696-47.424 35.392-58.496l256-130.816a63.36 63.36 0 0 1 85.856 29.248zM544 224l-256 131.456v313.12L544 800V224z m239.136 56.448c68.48 50.464 112.864 131.2 112.864 222.176 0 93.248-46.592 175.68-117.984 225.856l-44.8-44.32c60.512-38.208 100.64-105.248 100.64-181.536a214.4 214.4 0 0 0-95.264-178.08l44.544-44.096zM192 352v320H128V352h64z m503.264 18.208a153.28 153.28 0 0 1 76.48 132.416 153.472 153.472 0 0 1-81.024 135.04 221.408 221.408 0 0 1-28.8-54.56 92.064 92.064 0 0 0 47.68-80.48c0-33.44-18.016-62.72-44.928-78.912a222.72 222.72 0 0 1 30.592-53.504z" fill="#686C78" p-id="8922"></path></svg>
+      <mdui-slider   class="w-1/5"  :value="Volume"  @change="handleAudioVolume($event.target.value)"></mdui-slider>
+      <svg  t="1727405681649" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8921" width="24" height="24"><path d="M601.248 196.16c4.448 9.088 6.752 19.104 6.752 29.248v573.184C608 834.72 579.36 864 544 864c-9.92 0-19.744-2.368-28.608-6.912l-256-130.784A65.568 65.568 0 0 1 224 667.808v-311.584c0-24.768 13.696-47.424 35.392-58.496l256-130.816a63.36 63.36 0 0 1 85.856 29.248zM544 224l-256 131.456v313.12L544 800V224z m239.136 56.448c68.48 50.464 112.864 131.2 112.864 222.176 0 93.248-46.592 175.68-117.984 225.856l-44.8-44.32c60.512-38.208 100.64-105.248 100.64-181.536a214.4 214.4 0 0 0-95.264-178.08l44.544-44.096zM192 352v320H128V352h64z m503.264 18.208a153.28 153.28 0 0 1 76.48 132.416 153.472 153.472 0 0 1-81.024 135.04 221.408 221.408 0 0 1-28.8-54.56 92.064 92.064 0 0 0 47.68-80.48c0-33.44-18.016-62.72-44.928-78.912a222.72 222.72 0 0 1 30.592-53.504z" fill="#686C78" p-id="8922"></path></svg>
     </div>
   </div>
 
